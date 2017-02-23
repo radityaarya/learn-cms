@@ -1,0 +1,19 @@
+{
+  "name": "learn-cms",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/radityaarya/learn-cms.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/radityaarya/learn-cms/issues"
+  },
+  "homepage": "https://github.com/radityaarya/learn-cms#readme"
+}
