@@ -20,9 +20,8 @@ $(function() {
 
 // JQuery
 function createUser(){
-  $(document).ready(function(){
     $.ajax({
-      url  : "http://localhost:3000/users/register",
+      url  : "http://localhost:3000/api/users/register",
       type : "POST",
       data: {
         username: $('#register-username').val(),
@@ -39,24 +38,25 @@ function createUser(){
 
       }
     })
-  })
 }
 
 function login(){
     $.ajax({
-      url  : "http://localhost:3000/users/login",
+      url  : "http://localhost:3000/api/users/login",
       type : "POST",
       data: {
         username: $('#login-username').val(),
         password: $('#login-password').val()
       },
       success: function(data) {
-        if (data.err) alert(data.err)
+        if (data.err) {
+          alert(data.err)
+        }
         else {
           localStorage.setItem("token", data.token)
           localStorage.setItem("username", data.username)
 
-          window.location.href = 'http://127.0.0.1:8080/index.html'
+          window.location.href = 'http://127.0.0.1:41981/index.html'
         }
       }
     })
