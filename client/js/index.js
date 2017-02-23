@@ -14,7 +14,7 @@ $(document).ready(function() {
                       <a class="nav-link" href="data.html" style="color: rgb(200, 200, 200)">Data</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="data-date.html"style="color: rgb(200, 200, 200)">Date</a>
+                      <a class="nav-link" href="data-date.html" style="color: rgb(200, 200, 200)">Date</a>
                   </li>
               </ul>
               <div class="loginorlogout">
