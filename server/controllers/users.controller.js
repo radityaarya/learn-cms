@@ -6,7 +6,7 @@ module.exports = {
 
   // GET all users
   getAllUser : (req, res) => {
-    user.find( {}, {__v : false}, (err, data) =>{
+    user.find( {}, {__v : false, password: false}, (err, data) =>{
       res.send(data)
     })
   },
@@ -25,7 +25,7 @@ module.exports = {
         newUser.save((err,create) =>{
           res.json({
             username : create.username,
-            password : create.password
+            password : 'XXXXXXXXXXXX'
           })
         })
       }
@@ -45,7 +45,7 @@ module.exports = {
         let token = jwt.sign( {username: login.username}, process.env.SECRET, {expiresIn : 600*600});
         res.json( {
           username : login.username,
-          password : login.password,
+          password : 'XXXXXXXXXXXX',
           token    : token
         } );
       }
@@ -71,16 +71,15 @@ module.exports = {
       }, { new : true }, (err, data) => {
     res.json({
       message : "User (below) has been updated",
-      data : data})
+      username : data.username,
+      password : 'XXXXXXXXXXXX'})
     })
   },
 
   // DELETE a user
   deleteUser : (req, res) => {
     user.findOneAndRemove( {_id: req.params.id} ).then( (data) =>{
-      res.json({
-        message : "User (below) has been removed",
-        data : data})
+      res.json({message : "User has been removed"})
     })
   },
 
