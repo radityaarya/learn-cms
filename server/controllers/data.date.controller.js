@@ -14,7 +14,7 @@ module.exports = {
       letter    : req.body.letter,
       frequency : req.body.frequency
     })
-  newDate.save( (err, data) => {
+  newDates.save( (err, data) => {
     res.json({
       letter : data.letter,
       frequency : data.frequency
@@ -24,26 +24,26 @@ module.exports = {
 
   searchDate : (req, res) =>{
     if (req.query.letter == '' && req.query.freq == '') {
-      data.find({}, (err, data) =>{
+      dates.find({}, (err, data) =>{
         res.json(data)
       })
     }
     else if (req.query.freq == '') {
-      data.find(
+      dates.find(
         {letter: req.query.letter}
       , (err, data) =>{
         res.json(data)
       })
     }
     else if (req.query.letter == '') {
-      data.find(
+      dates.find(
         {frequency: req.query.freq}
       , (err, data) =>{
         res.json(data)
       })
     }
     else {
-      data.find({
+      dates.find({
         $and: [{letter: req.query.letter},{frequency: req.query.freq}]
       }, (err, data) =>{
         res.json(data)

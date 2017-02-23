@@ -14,8 +14,6 @@ module.exports = {
   // CREATE a user
   createUser : (req, res) => {
     user.findOne( {username : req.body.username}, (err, data) =>{
-      // FIND if username already taken or not
-      // if username available, then ..
       if(data) res.json({err: "Username already taken!"})
       else{
         let newUser = user({
@@ -37,11 +35,9 @@ module.exports = {
     user.findOne( { username: req.body.username } )
     .then( (login) => {
       if(!login){
-        // console.log(login);
-        res.json({err: "invalid username and password! match"})
+        res.json({err: "invalid username and password match"})
       }
       else if( hash.verify(req.body.password,login.password) ){
-        // console.log(login);
         let token = jwt.sign( {username: login.username}, process.env.SECRET, {expiresIn : 600*600});
         res.json( {
           username : login.username,
@@ -50,7 +46,7 @@ module.exports = {
         } );
       }
       else
-          res.json({err: 'invalid username and password! match'})
+          res.json({err: 'invalid username and password match'})
     })
   },
 
@@ -82,19 +78,7 @@ module.exports = {
       res.json({message : "User has been removed"})
     })
   },
-
-  // VERIFY a user
-  verify: (req, res, next) => {
-    if(req.headers.token == 'null')
-        res.json({err: "you don't have acces"})
-    else{
-        if (jwt.verify(req.headers.token, process.env.SECRET))
-            next()
-        else
-            res.json({err: 'expired token'})
-    }
-  }
-
+  
   // VERIFY a user
   // verifyUser : (req, res, next) => {
   //   let decode = jwt.verify(req.header('token'), process.env.SECRET)
@@ -107,4 +91,17 @@ module.exports = {
   //       })
   //   }
   // }
+
+  // VERIFY a user
+  verify: (req, res, next) => {
+    if(req.headers.token == 'null')
+        res.json({err: "Permission denied!"})
+    else{
+        if (jwt.verify(req.headers.token, process.env.SECRET))
+            next()
+        else
+            res.json({err: 'expired token'})
+    }
+  }
+
 }
