@@ -41,15 +41,3 @@ function loginPage(){
   localStorage.clear()
   window.location.href = 'http://127.0.0.1:41981/login.html'
 }
-
-function home(){
-  location.reload();
-}
-
-function data() {
-  window.location.href = 'http://127.0.0.1:41981/data.html'
-}
-
-function date() {
-  window.location.href = 'http://127.0.0.1:41981/data-date.html'
-}
