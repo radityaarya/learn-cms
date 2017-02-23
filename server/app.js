@@ -22,7 +22,7 @@ mongoose.Promise = global.Promise;
 var index = require('./routes/index');
 var users = require('./routes/api/users.route');
 var data  = require('./routes/api/data.route');
-var date  = require('./routes/api/data.date.route');
+var dates  = require('./routes/api/data.date.route');
 
 var app = express();
 
@@ -42,8 +42,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/api/users', users);
-// app.use('/api/data', data);
-// app.use('/api/date', date);
+app.use('/api/data', data);
+app.use('/api/dates', dates);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
